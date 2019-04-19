@@ -611,7 +611,7 @@ public class Fetcher<K, V> implements Closeable {
         } else if (!requestedResetTimestamp.equals(offsetResetStrategyTimestamp(partition))) {
             log.debug("Skipping reset of partition {} since an alternative reset has been requested", partition);
         } else {
-            log.info("Resetting offset for partition {} to offset {}.", partition, offsetData.offset);
+            log.debug("Resetting offset for partition {} to offset {}.", partition, offsetData.offset);
             offsetData.leaderEpoch.ifPresent(epoch -> metadata.updateLastSeenEpochIfNewer(partition, epoch));
             subscriptions.seek(partition, offsetData.offset);
         }
